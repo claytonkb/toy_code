@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "pearson.h"
 
 void dev_prompt(void);
 void dev_get_line(char *buffer, FILE *stream);
@@ -41,6 +42,9 @@ void dev_prompt(void){
     int dev_i;
 
     int    tempi;
+    uint64_t *result[2];
+    uint64_t *init[2] = {0, 0};
+    char *key = "foo";
 
     _say("type 0 for menu");
 
@@ -60,7 +64,11 @@ void dev_prompt(void){
                 break;
 
             case 1:
-                _say("cmd_code==1");
+                cmd_code_str = strtok(NULL, " ");
+                if(cmd_code_str == NULL){  continue; }
+                pearson128(result, init, cmd_code_str, strlen(cmd_code_str));
+                _mem(result,2);
+                _say("");
                 break;
 
             case 2:

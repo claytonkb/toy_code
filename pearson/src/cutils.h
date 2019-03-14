@@ -39,8 +39,14 @@
 #define _endl           do{ fprintf(stderr, "\n"); fflush(stderr); } while(0)
 #define _prn(x)         do{ fprintf(stderr, "%s", x); fflush(stderr); } while(0)
 #define _say(x)         do{ fprintf(stderr, "%s\n", x); fflush(stderr); } while(0)
-#define _msg(x)         do{ _say("LIB_BABEL: " x); } while(0)
+#define _msg(x)         do{ _say("CUTILS: " x); } while(0)
 #define _trace          do{ fprintf(stderr, "TRACE: %s() in %s line %d\n", __func__, __FILE__, __LINE__); fflush(stderr); } while(0)
+
+
+#define _mem(x,y)                                                       \
+    for(dev_i=0; dev_i<y; dev_i++){                     \
+        fprintf(stderr, "%016lx", *((uint64_t*)x+dev_i));           \
+    }
 
 #endif // CUTILS_H
 
